@@ -1,0 +1,25 @@
+{
+  "name": "liberate",
+  "version": "1.0.0",
+  "description": "a web for record personal working blog...",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jfIvan/liberate.git"
+  },
+  "keywords": [
+    "jiefang"
+  ],
+  "author": "jfIvan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jfIvan/liberate/issues"
+  },
+  "homepage": "https://github.com/jfIvan/liberate#readme"
+}

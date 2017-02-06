@@ -1,0 +1,20 @@
+{
+  "name": "liberate",
+  "description": "a web for record personal working blog...",
+  "main": "index.js",
+  "authors": [
+    "jfIvan"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "jiefang"
+  ],
+  "homepage": "https://github.com/jfIvan/liberate",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
