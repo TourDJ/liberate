@@ -1,7 +1,7 @@
 
-var server = require("./server")
-var route = require("./router")
-var requestHandlers = require("./requestHandlers")
+var server = require("./app/server")
+var route = require("./app/router")
+var requestHandlers = require("./app/requestHandlers")
 
 var handle = {}
 handle["/"] = requestHandlers.start
