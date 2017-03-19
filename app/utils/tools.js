@@ -27,9 +27,46 @@ var tools = {
 		var path = srcPath.substring(0, count)
 
 		return path
+	},
+
+
+	clone: function (desc, src){
+		for(var key in src){
+			desc[key] = src[key];
+		}
+	},
+
+	decryptPassword: function (password) {
+		if(typeof password != 'string')
+			return ''
+
+		var len = password.length
+		var tempChar
+		var dest = ''
+		for (var i = 0; i < len; i++) {
+			tempChar = password.charCodeAt(i)
+			dest += String.fromCharCode(tempChar ^ i);
+		}
+
+		return dest
+	},
+
+	encryptPassword: function (password) {
+		if(typeof password != 'string')
+			return ''
+
+		var len = password.length
+		var tempChar
+		var dest = ''
+		for (var i = 0; i < len; i++) {
+			tempChar = password.charCodeAt(i)
+			dest += String.fromCharCode(tempChar ^ i);
+		}
+
+		return dest
 	}
 	
 }
 
 
-exports.tools = tools
+module.exports = tools

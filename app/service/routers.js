@@ -1,5 +1,6 @@
 var home = require('../controller/home')
-
+var article = require('../controller/article')
+var login = require('../controller/login')
 
 module.exports = function(app) {
 
@@ -7,6 +8,15 @@ module.exports = function(app) {
 	app.get('/', home.index)
 	app.get('/index', home.index)
 
+
+	//
+	app.get('/article', article.writeArticle)
+	app.post('/article/save', article.saveArticle)
+
+	app.get('/login', login.login)
+	app.post('/slogin', login.slogin)
+	app.get('/register', login.register)
+	app.post('/sregister', login.segister)
 
 }
 

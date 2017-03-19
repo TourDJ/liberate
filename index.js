@@ -4,6 +4,8 @@ var tools = require('./app/utils/tools').tools
 const path = require('path')
 var express = require('express')
 var app = express()
+var bodyParser = require('body-parser')
+var session = require('express-session')
 
 //initial args
 server.init(app, {
@@ -53,9 +55,23 @@ app.use(express.static('public'))
 // }
 // =========================================================================
 
-//pre load handler
-app.use(function(req, res, next) {
+//Create a session middleware with the given options
+app.use(session({
+	secret: 'jf blog',
+	resave: false,
+	saveUninitialized: true,
+	cookie: { secure: true }
+}))
 
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+//pre-load handler
+app.use(function(req, res, next) {
+	//define object save session's data
+	if(!req.session.clock) {
+		req.session.clock = {}
+	}
 
 	next()
 })
@@ -64,8 +80,7 @@ app.use(function(req, res, next) {
 require('./app/service/routers')(app)
 
 //404 error
-app.get('*', function(req, res, next) {
-	console.log('err.statusCode')
+app.all('*', function(req, res, next) {
 	res.status(404)
 	res.render('pages/error', { "error": 'err.stack' })
 })

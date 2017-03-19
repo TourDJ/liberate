@@ -1,5 +1,13 @@
 var	mysql = require('mysql')
 
+var defaultConfig = {
+	host		: 'localhost',
+	user		: 'root',
+	password	: 'tang',
+	port		: '3306',
+	database	: 'liberate'
+}
+
 /*
 *  get db connection
 *	dbDriver: database driver's name
@@ -24,15 +32,24 @@ function getConnection(dbDriver, dbConfig) {
 *  or managing multiple connections.
 */
 function getConnPool(dbConfig) {
-	var pool
+	var pool	
+	var _dbConfig = dbConfig || defaultConfig
 
-	if(!dbConfig)
-		return null
+	// if(!dbConfig)
+	// 	return null
 
-	pool = mysql.createPool(dbConfig)
+	pool = mysql.createPool(_dbConfig)
 
 	return pool
 }
 
-exports.getConnection = getConnection
+function getMySQLConnection(dbConfig){
+	var _dbConfig = dbConfig || defaultConfig
+
+	return getConnection("mysql", _dbConfig)
+}
+
+
+
+exports.getMySQLConnection = getMySQLConnection
 exports.getConnPool = getConnPool

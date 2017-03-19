@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<% include ../partials/meta_head %>
+</head>
+<body>
+	
+    <div class="container">
+		<div class="row">
+  		<div class="col-md-4 col-md-offset-4">
+			<div style="margin-bottom:20%;">
+		      <form class="form-signin" id="loginForm" method="post" action="/slogin">
+		        <h2 class="form-signin-heading">请 登 录</h2>
+		        
+		        <div class="form-group has-feedback">
+			        <label for="inputUsername">用户名</label>
+			        <input type="text" id="inputUsername" class="form-control" 
+				        name="username" placeholder="username" required autofocus>
+		        </div>
+		        
+		        <div class="form-group has-feedback">
+			        <label for="inputPassword">密码</label>
+			        <input type="password" id="inputPassword" class="form-control" 
+				        name="password" placeholder="password" required>
+		        </div>
+		        
+		        <div class="form-group">
+			        <div class="checkbox">
+			          <label>
+			          	<input type="hidden" name="remember" id="remember2" value="0"> 
+			            <input type="checkbox" value="remember-me" id="remember"> 记住我
+			          </label>
+			        </div>
+		        </div>
+		        
+		        <button class="btn btn-lg btn-primary btn-block" type="submit" id="signIn">
+		        	<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> 
+		        	<span class="label">登&nbsp;&nbsp;&nbsp;&nbsp;录</span>
+		        </button>
+
+		        <div class="div-register">
+		        	<span>没有帐号？这里<strong><a href="/register">注&nbsp;册</a></strong></span>
+		        </div>
+		      </form>
+      		</div>
+      	</div>
+      	</div>
+	</div>
+		
+	<% include ../partials/foot.ejs %>
+
+	<script type="text/javascript">
+		$("#btnLogin").on('click', function () {
+			alert('something...')
+		})
+	</script>
+</body>
+</html>
