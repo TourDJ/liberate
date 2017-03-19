@@ -2,18 +2,6 @@
 <html lang="en">
 	<head>
 		<% include ../partials/meta_head %>
-
-		<style type="text/css">
-
-			body{
-				background-color: #F5F5F5;
-			}
-
-			.blog-header{
-				background-color: #E6E6FA;
-				margin-bottom: 10px;
-			}
-		</style>
 	</head>
 
 	<body>
@@ -28,24 +16,35 @@
 				        <li><a href="#">Home</a></li>
 				        <li><a href="#about">About</a></li>
 				        <li><a href="#contact">Contact</a></li>
+				        <li><a href="/login">登录</a></li>
 					</ul>
 	    		</div>
 			</div>
 		</nav>
 
-		<div class="blog-header">
-	  		<% include ../partials/blog_title %>
-		</div>
+	  	<% include ../partials/head %>
 
 	    <div class="container">
 
 
 
-			<form method="post" id="blogForm">
+			<form method="get" id="blogForm">
 	      		<div>
 	      			<button type="button" class="btn btn-primary" id="w_blog">写博客</button>
 	      		</div>
 	      	</form>
+
+	      	<div>
+	      		<% artis.forEach(function(article){ %>
+	      			<div>
+	      		    	<%=article.title %>
+	      		    </div>
+						<%=article.content %>
+	      		    <div>
+	      		    	
+	      		    </div>
+	      		<% }); %>
+	      	</div>
 
 	      <div class="row">
 
@@ -65,31 +64,7 @@
 	            <h4>About</h4>
 	            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
 	          </div>
-	          <div class="sidebar-module">
-	            <h4>Archives</h4>
-	            <ol class="list-unstyled">
-	              <li><a href="#">March 2014</a></li>
-	              <li><a href="#">February 2014</a></li>
-	              <li><a href="#">January 2014</a></li>
-	              <li><a href="#">December 2013</a></li>
-	              <li><a href="#">November 2013</a></li>
-	              <li><a href="#">October 2013</a></li>
-	              <li><a href="#">September 2013</a></li>
-	              <li><a href="#">August 2013</a></li>
-	              <li><a href="#">July 2013</a></li>
-	              <li><a href="#">June 2013</a></li>
-	              <li><a href="#">May 2013</a></li>
-	              <li><a href="#">April 2013</a></li>
-	            </ol>
-	          </div>
-	          <div class="sidebar-module">
-	            <h4>Elsewhere</h4>
-	            <ol class="list-unstyled">
-	              <li><a href="#">GitHub</a></li>
-	              <li><a href="#">Twitter</a></li>
-	              <li><a href="#">Facebook</a></li>
-	            </ol>
-	          </div>
+
 	        </div><!-- /.blog-sidebar -->
 
 	      </div><!-- /.row -->
@@ -108,7 +83,7 @@
 
 		tang.addEvent(btnWblog, 'click', function(){
 			console.log('write blog...')
-			blogForm.action = '/test';
+			blogForm.action = '/article';
 			blogForm.submit()
 		})
     	

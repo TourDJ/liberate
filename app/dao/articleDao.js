@@ -1,21 +1,21 @@
 var Article 		= require("../model/article").article
-var dbUtils 		= require("../utils/dbUtils")
-var tools 		= require("../utils/tools")
+// var dbUtils 		= require("../utils/dbUtils")
+//var tools 		= require("../utils/tools")
 
-function articleDao(type) {
+var articleDao = {
 
-	var dbDriver = "mysql"
-	var dbConfig = {
-		host		: 'localhost',
-		user		: 'root',
-		password	: 'tang',
-		port		: '3306',
-		database	: 'liberate'
-	}
+	// var dbDriver = "mysql"
+	// var dbConfig = {
+	// 	host		: 'localhost',
+	// 	user		: 'root',
+	// 	password	: 'tang',
+	// 	port		: '3306',
+	// 	database	: 'liberate'
+	// }
 	// var connection = dbUtils.getConnection(dbDriver, dbConfig)
-	var pool = dbUtils.getConnPool(dbConfig)
+	// var pool = dbUtils.getConnPool(dbConfig)
 
-	function connect(connection) {
+	connect: function (connection) {
 		connection.connect(function(err) {
 		  	if (err) {
 		    		console.error('error connecting: ' + err.stack)
@@ -24,19 +24,19 @@ function articleDao(type) {
 		 
 		  	console.log('connected as id ' + connection.threadId)
 		});
-	}
+	},
 
-	function disconnect(connection) {
+	disconnect: function (connection) {
 		connection.end(function(err){
 		    	if(err){        
 		        		return;
 		    	}
 		      	console.log('[connection end] succeed!')
 		});
-	}
+	},
 
-	function getArticles(id, article, callback) {
-		var _sql = 'SELECT * FROM article'
+	getArticles: function (pool, callback) {
+		var _sql = 'SELECT * FROM article;'
 		var articles = []
 
 		pool.getConnection(function(err, connection) {
@@ -56,18 +56,30 @@ function articleDao(type) {
 					if (error) throw error
 			 
 					// Don't use the connection here, it has been returned to the pool. 
-					console.log(results)
+					// console.log(results)
 					if(results && results.length && results.length > 0) {
 						var len = results.length
 						var _article
 						var temp
+
 						for (var i = 0; i < len; i++) {
 							temp = results[i]
-							_article = new Article(temp.id,
-												temp.name,
-												temp.content,
-												temp.cdate)
+							
+							_article = new Article({
+								id: temp.id,
+								title: temp.title,
+								content: temp.content,
+								post_time: temp.post_time,
+								langid: temp.langid,
+								cnt_approve: temp.cnt_approve,
+								cnt_against: temp.cnt_against,
+								cnt_message: temp.cnt_message,
+								cnt_read: temp.cnt_read,
+								state: temp.state
+							})
+
 							articles.push(_article)
+
 						}
 					}
 					callback(articles)
@@ -76,9 +88,9 @@ function articleDao(type) {
 		})
 
 		return articles
-	}
+	},
 
-	function getArticleById(id, article, callback) {
+	getArticleById: function (pool, id, article, callback) {
 		var _sql = 'SELECT * FROM article where id = ?'
 		var _article
 
@@ -115,21 +127,17 @@ function articleDao(type) {
 		})
 
 		return _article
-	}
+	},
 
-	function addArticle(id, article, callback) {
+	addArticle: function (pool, article, callback) {
 		var _sql = 'INSERT INTO article SET ?'
-		var post  = {
-			name:  article.name, 
-			content: article.content,
-			cdate: article.cdate
-		}
+		var post  = article
 
 		var result = -1
 		pool.getConnection(function(err, connection) {
 			connection.query(_sql, post, function (error, results, fields) {
 				if (error) throw error
-			 	// console.log(results)
+			 	 console.log(results)
 			 	// console.log(fields) 
 			 	if(results){
 			 		result = results.affectedRows
@@ -139,9 +147,9 @@ function articleDao(type) {
 		})
 
 		return result
-	}
+	},
 
-	function updateArticle(id, article, callback) {
+	updateArticle: function (pool, id, article, callback) {
 		// var _sql = 'UPDATE article SET name=?, content=?, mdate=? where id=? '
 		var _sql = 'UPDATE article SET state=1, '
 		var post = []
@@ -168,9 +176,9 @@ function articleDao(type) {
 		})
 
 		return result
-	}
+	},
 
-	function deleteArticle(id, article, callback) {
+	deleteArticle: function (pool, id, article, callback) {
 		var _sql = 'DELETE FROM article WHERE id = ?'
 		var post = [id]
 		var result = -1
@@ -191,15 +199,16 @@ function articleDao(type) {
 	}
 
 
-	this.list = getArticles
-	this.retrieve = getArticleById
-	this.insert = addArticle
-	this.update = updateArticle
-	this.delete = deleteArticle
+	// this.list = getArticles
+	// this.retrieve = getArticleById
+	// this.insert = addArticle
+	// this.update = updateArticle
+	// this.delete = deleteArticle
 
-	return this
+	// return this
 }
-exports.dao = articleDao
+
+module.exports = articleDao
 // addArticle(new Article(null, 'jiefang', 'jiefangsfd', tools.nowDate()))
 // updateArticle(6, new Article(6, 'jiefang', 'hello.dfd.', tools.nowDate()))
 // deleteArticle(7)

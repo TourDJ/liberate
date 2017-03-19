@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<% include ../partials/meta_head %>
+		<script src='./tinymce/tinymce.min.js'></script>
+
+	</head>
+
+	<body>
+		<form action="/article/save" method="post" id="saveForm">
+	    	<div id="container">
+	    		标题:<input type="text" name="title" id="title">
+	    		标签:
+	    		<% 
+	    			langs.forEach(function(language, i){ 
+					var _seq = "chk_"+ i
+	    		%>
+					<input type="checkbox" name=<%=_seq %> value=<%=language.id %>>
+					<%=language.name %>
+	    		<% }) %>
+	    		<textarea name="content" id="content">Hello, World!</textarea>
+	    		<button type="submit" class="btn btn-primary" id="btn_save">保存</button>
+	    	</div>
+	  	</form>
+
+		<% include ../partials/foot.ejs %>
+	</body>
+
+	<script type="text/javascript">
+    	tinymce.init({
+    	   selector: '#content'
+    	});
+
+    	$("#saveForm").submit(function(event){
+    		
+    	})
+	</script>
+</html>
