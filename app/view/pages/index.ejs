@@ -6,86 +6,192 @@
 
 	<body>
 
-		<nav class="navbar">
-			<div class="container">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="javascript:void(0)">Liberate</a>
+		<% include ../partials/blog_title %>
+
+
+		<form method="get" id="blogForm">
+			<div class="container-fluid">
+
+				<div class="row">
+					<% include ../partials/head %>
 				</div>
-				<div id="navbar">
-					<ul class="nav navbar-nav">
-				        <li><a href="#">Home</a></li>
-				        <li><a href="#about">About</a></li>
-				        <li><a href="#contact">Contact</a></li>
-				        <li><a href="/login">登录</a></li>
-					</ul>
-	    		</div>
-			</div>
-		</nav>
-
-	  	<% include ../partials/head %>
-
-	    <div class="container">
 
 
+	      		<div class="row">
+	      		  	<div class="col-md-2 col-md-offset-6">
+	  		          	<nav>
+	  			            <ul class="pager">
+	  			              <li><a href="#">Previous</a></li>
+	  			              <li><a href="#">Next</a></li>
+	  			            </ul>
+	  		          	</nav>
+	      		  	</div>
 
-			<form method="get" id="blogForm">
-	      		<div>
-	      			<button type="button" class="btn btn-primary" id="w_blog">写博客</button>
-	      		</div>
-	      	</form>
+			        <div class="col-md-8 blog-main">
+				    <% artis.forEach(function(article){ %>
+				      	<% var article_url = '/article/' + article.id %>
+				      	<div class="blog-block">
+		      				<div class="row">
+			      				<div class="col-md-9">
+			      				<div>
+			      					发表于 <%=article.post_time %>
+			      				</div>
+			      				<div>
+			      				<span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+			      			  	<strong>
+			      			  		<a href=<%=article_url %>><%=article.title %></a>
+			      			  	</strong>
+			      			  	
+			      			  	</div>
 
-	      	<div>
-	      		<% artis.forEach(function(article){ %>
-	      			<div>
-	      		    	<%=article.title %>
-	      		    </div>
-						<%=article.content %>
-	      		    <div>
-	      		    	
-	      		    </div>
-	      		<% }); %>
-	      	</div>
+			      				</div>
 
-	      <div class="row">
+					        	<div class="col-md-3">
+					        		<div>
+					        			<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+					        			<span>
+					        				&nbsp;<strong class="blog_approve"><%=article.cnt_approve %> </strong>
+					        			</span>
+					        			&nbsp;&nbsp;
+					        			<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+					        			<span>
+					        				&nbsp;<strong class="blog_against"><%=article.cnt_against %></strong>
+					        			</span>
+					        		</div>
 
-	        <div class="col-sm-8 blog-main">
+					        		<div>
+					        			<span>
+					        				<strong><%=article.cnt_read %></strong>
+					        				阅读 
+					        			</span>  &nbsp;&nbsp;
+					        			<span>
+					        				<strong><%=article.cnt_message %></strong> 
+					        				回复
+					        			</span> &nbsp;&nbsp;
+					        		</div>
+					        	</div> 
 
-	          <nav>
-	            <ul class="pager">
-	              <li><a href="#">Previous</a></li>
-	              <li><a href="#">Next</a></li>
-	            </ul>
-	          </nav>
+		      				</div>
 
-	        </div><!-- /.blog-main -->
+			        	</div>
+				    <% }); %>
 
-	        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-	          <div class="sidebar-module sidebar-module-inset">
-	            <h4>About</h4>
-	            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-	          </div>
+			          	<nav aria-label="Page navigation">
+			          	  <ul class="pagination">
+			          	    <li class="prev">
+			          	      <a href="javascript:void(0)" aria-label="Previous">
+			          	        <span aria-hidden="true">&laquo;</span>
+			          	      </a>
+			          	    </li>
 
-	        </div><!-- /.blog-sidebar -->
+			          	    <input type="hidden" name="pages" value=<%=pages %> id="pages">
+			          	    <input type="hidden" name="pageNo" id="pageNo" value=<%=pageNo %> id="pageNo">
+			          	    <% 	
+			          	    	for(var i = 1; i <= pages; i++){ 
+								var _class = "page" + i
+			          	    %>
+			          	    <li class="<%=_class %>">
+			          	    	<a href="javascript:void(0)"><%=i %></a>
+			          	    </li>
+			          	    <% } %>
 
-	      </div><!-- /.row -->
+			          	    <li class="next">
+			          	      <a href="#javascript:void(0)" aria-label="Next">
+			          	        <span aria-hidden="true">&raquo;</span>
+			          	      </a>
+			          	    </li>
+			          	  </ul>
+			          	</nav>
+			        </div><!-- /.blog-main -->
 
-	    </div><!-- /.container -->
+		        	<div class="col-md-2 blog-sidebar">
+			          	<div class="sidebar-module sidebar-module-inset">
+			            <h4>About</h4>
+			            <%=blog.blog_author_desc %>
+			          	</div>
+		        	</div><!-- /.blog-sidebar -->
+	      		</div><!-- /.row -->
+	    	</div><!-- /.container -->
+		</form>
 
 
-	<% include ../partials/foot.ejs %>  
+		<% include ../partials/foot.ejs %>  
 
 	</body>
 
 	<script type="text/javascript">
-		var btnWblog = tang.getDOM("w_blog"),
-			blogForm = tang.getDOM("blogForm")
+		(function () {
+			var pageNo = $("#pageNo").val()
+			var pages = $("#pages").val()
+			var cls = ".page" + pageNo
 
+			if(pages == 1) {
+				$(".prev").addClass("disabled")
+				$(".next").addClass("disabled")
+			}else{
+				if(pageNo == 1){
+					prevOrNext(['prev'], ['next'])
+				} else if (pageNo == pages) {
+					prevOrNext(['next'], ['prev'])
+				} else {
+					prevOrNext([], ['prev', 'next'])
+				}
+			}
 
-		tang.addEvent(btnWblog, 'click', function(){
-			console.log('write blog...')
-			blogForm.action = '/article';
-			blogForm.submit()
-		})
+			function prevOrNext (add, remove) {
+				$.each(add, function (i, name) {
+					$("." + name).addClass("disabled")
+				})
+
+				$.each(remove, function (i, name) {
+					$("." + name).removeClass("disabled")
+					.children()
+					.on('click', function () {
+						var _page = $("#pageNo").val()
+						var no 
+
+						if(name == "prev")
+							no = parseInt(_page) - 1
+						else
+							no = parseInt(_page) + 1
+
+						if(no > pages)
+							no = pages
+						if(no <= 0)
+							no = 1
+
+						$("#pageNo").val(no)
+						$(this).attr("href", "/index/article/" + no)
+					}) 
+				})
+			}
+
+			$(cls).addClass("active")
+
+			for (var i = 1; i <= pages; i++) {
+				if(i != pageNo){
+					(function (no) {
+						$(".page" + i).children().css("cursor", "pointer")
+						.on('click', function () {
+							var _this = $(this)
+							$("#pageNo").val(i)
+							_this.attr("href", "/index/article/" + no)
+						})
+					})(i)
+				}
+			}
+
+			var btnWblog = tang.getDOM("w_blog"),
+				blogForm = tang.getDOM("blogForm")
+
+			tang.addEvent(btnWblog, 'click', function(){
+				console.log('write blog...')
+				blogForm.action = '/article';
+				blogForm.submit()
+			})
+			
+		})()
+
     	
 	</script>
 </html>

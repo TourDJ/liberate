@@ -47,8 +47,6 @@ var userDao = {
 				}
 			)
 		})
-
-		return _user
 	},
 
 	addUser: function (pool, user, callback) {
@@ -72,8 +70,6 @@ var userDao = {
 			 	callback(result)
 			});
 		})
-
-		return result
 	}
 }
 

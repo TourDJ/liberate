@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<% include ../partials/meta_head %>
+
+	</head>
+
+	<body>
+		<% include ../partials/blog_title %>
+
+		<form action="/article/saveComment" method="post" id="saveForm">
+			<input type="hidden" name="aid" id="aid" value="<%=article.id %>">
+	    	<div class="container-fluid">
+	    		<div class="row">
+	    			<% include ../partials/head %>
+	    		</div>
+	    		
+	    		<div class="row blog-main">
+	    			<div class="col-md-8">
+	    				<div>
+		    			<% 
+		    				var langs = tags.split(' ')
+		    				var lang,index,name,leve
+		    				var _cls
+			    			for(var i = 0; i < langs.length; i++){
+			    				lang = langs[i]
+			    				if(lang.trim() == '')
+			    					continue
+
+			    				index = lang.indexOf(',')
+			    				name = lang.substr(0, index)
+			    				leve = lang.substr(index + 1)
+								if(leve == 1)
+									_cls = "label label-success"
+								else if(leve == 2)
+									_cls = "label label-warning"
+						%>
+							<a class="tag" href="javascript:void(0)">
+								<span class="<%=_cls %>"><%=name %></span>
+							</a>
+							&nbsp;
+						<%		
+			    			}
+		    			%>
+		    			</div>
+
+		    			<div>
+	    				<%-article.content %>
+	    				</div>
+
+			    		<div class="blog-select">
+			    			<button type="button" class="btn btn-success btn-lg" aria-label="Left Align">
+			    			  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+			    			</button>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+			    			<button type="button" class="btn btn-primary btn-lg" aria-label="Left Align">
+			    			  <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+			    			</button>
+			    		</div>
+	
+						<!-- 评论 -->
+			    		<div class="blog-reply">
+			    			<div class="blog-reply-head">评论</div>
+							
+						
+			    		</div>
+
+						<!-- 回复 -->
+			    		<div class="blog-reply">
+			    			<div class="blog-reply-write">回复</div>
+			    			<div class="form-group">
+			    			    <label for="username">用户名</label>
+			    			    <input type="text" class="form-control" id="username" placeholder="用户名" name="username">
+			    			</div>
+			    			<div class="form-group">
+			    			    <label for="content">内容</label>
+			    			    <textarea id="content" row="10" class="form-control" placeholder="撰写评论" name="content"></textarea>
+			    			</div>
+			    			<button type="submit" class="btn btn-primary">发布评论</button>
+			    		</div>
+	    			</div>
+	    			
+	    			<div class="col-md-3">
+	    				<div class="panel panel-default">
+	    				  <div class="panel-heading">Panel heading without title</div>
+	    				  <div class="panel-body">
+	    				    Panel content
+	    				  </div>
+	    				</div>
+	    			</div>
+	    		</div>
+	    	</div>
+	  	</form>
+
+		<% include ../partials/foot.ejs %>
+	</body>
+
+	<script type="text/javascript">
+
+    	$("#saveForm").submit(function(event){
+    		
+    	})
+	</script>
+</html>

@@ -5,6 +5,7 @@ const path = require('path')
 var express = require('express')
 var app = express()
 var bodyParser = require('body-parser')
+var cookieParser = require('cookie-parser');
 var session = require('express-session')
 
 //initial args
@@ -55,12 +56,17 @@ app.use(express.static('public'))
 // }
 // =========================================================================
 
+//Since sessions use cookies to keep track users we need both the cookie parser and 
+//the session framework. It is important to note that the cookie parser is used before 
+//the session, this order is required for sessions to work.
+app.use(cookieParser());
+
 //Create a session middleware with the given options
 app.use(session({
 	secret: 'jf blog',
-	resave: false,
+	resave: true,
 	saveUninitialized: true,
-	cookie: { secure: true }
+	cookie: { maxAge: 600000, secure: true }
 }))
 
 // parse application/x-www-form-urlencoded

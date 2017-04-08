@@ -3,7 +3,38 @@ body{
 	background-color: #F5F5F5;
 }
 
-.block-header{
-	background-color: #E6E6FA;
-	margin-bottom: 10px;
+.blog-header {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #E6E6FA;
+}
+.blog-title {
+  margin-top: 10px;
+  margin-bottom: 0;
+  font-size: 60px;
+  font-weight: normal;
+}
+.blog-description {
+  font-size: 20px;
+  color: #999;
+}
+.blog-right{
+	
+}
+
+/*
+ * Footer
+ */
+
+.blog-footer {
+  padding: 20px 0;
+  color: #999;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-top: 1px solid #e5e5e5;
+  font-weight: bolder;
+}
+
+.blog-footer p:last-child {
+  margin-bottom: 0;
 }

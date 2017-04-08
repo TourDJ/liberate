@@ -7,11 +7,15 @@ module.exports = function(app) {
 	// respond with ejs when a GET request is made to the homepage
 	app.get('/', home.index)
 	app.get('/index', home.index)
+	app.get('/index/:id', home.index2)
+	app.get('/index/article/:aid', home.index)
 
 
 	//
 	app.get('/article', article.writeArticle)
 	app.post('/article/save', article.saveArticle)
+	app.get('/article/:articleId', article.getArticleById)
+	app.post('/article/saveComment', article.saveComment)
 
 	app.get('/login', login.login)
 	app.post('/slogin', login.slogin)

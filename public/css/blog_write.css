@@ -1,0 +1,23 @@
+
+.blog-main {
+	margin-left: 10%;
+	margin-top: 10px;
+}
+
+.blog-item {
+	margin: 20px 0;
+}
+
+
+.blog-left {
+	text-align: right;
+}
+
+.blog-lang {
+	margin: 5px 0;
+	text-align: left;
+}
+
+.blog-sidebar {
+	margin: 10px 0;
+}

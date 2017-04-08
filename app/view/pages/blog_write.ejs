@@ -7,19 +7,94 @@
 	</head>
 
 	<body>
+		<% include ../partials/blog_title %>
+
 		<form action="/article/save" method="post" id="saveForm">
-	    	<div id="container">
-	    		标题:<input type="text" name="title" id="title">
-	    		标签:
-	    		<% 
-	    			langs.forEach(function(language, i){ 
-					var _seq = "chk_"+ i
-	    		%>
-					<input type="checkbox" name=<%=_seq %> value=<%=language.id %>>
-					<%=language.name %>
-	    		<% }) %>
-	    		<textarea name="content" id="content">Hello, World!</textarea>
-	    		<button type="submit" class="btn btn-primary" id="btn_save">保存</button>
+	    	<div class="container-fluid">
+
+		    	<div class="row">
+		    		<% include ../partials/head %>
+		    	</div>
+	    	
+	    		<div class="row">
+	    			<div class="row blog-main">
+	    				<div class="col-md-8">
+	    					<div class="row blog-item">
+	    						<div class="col-md-2 blog-left">
+	    							<span><strong>标题:</strong></span>
+	    						</div>
+	    						<div class="col-md-10 blog-right">
+	    							<input type="text" name="title" id="title" style="width: 80%;">
+	    						</div>
+	    					</div>
+
+	    					<div class="row blog-item">
+					    		<div class="col-md-2 blog-left">
+					    			<span><strong>标签:</strong></span>
+					    		</div>
+					    		<div class="col-md-10 blog-right">
+					    		<% 
+					    			langs.forEach(function(language, i){ 
+									var _seq = "chk_"+ i
+					    		%>
+					    			<div class="col-md-3 blog-lang">
+										<span>
+											<input type="checkbox" name=<%=_seq %> id=<%=_seq %> value=<%=language.id %>> 
+											&nbsp;&nbsp;
+											<label for=<%=_seq %> ><%=language.name %></label>
+										</span>
+					    			</div>
+					    		<% }) %>
+					    		</div>
+	    					</div>
+
+	    					<div class="row blog-item">
+	    						<div class="col-md-2 blog-left">
+	    							<span><strong>内容:</strong></span>
+					    		</div>
+					    		<div class="col-md-10 blog-right">
+	    						<textarea name="content" id="content"></textarea>
+	    						</div>
+	    					</div>
+	    						  
+	    					<div class="row blog-item">
+	    						<div class="col-md-2 col-md-offset-2">
+	    						<button type="submit" class="btn btn-primary" id="btn_save">保存</button>
+	    						</div>
+	    					</div>
+	    				</div>
+	    				
+	    				<div class="col-md-3">
+		    				<div class="row">
+		    				  <div class="col-xs-6 col-md-3">
+		    				    <a href="#" class="thumbnail">
+		    				      <img src="..." alt="...">
+		    				    </a>
+		    				  </div>
+		    				  ...
+		    				</div>
+	    				
+	    					<div class="panel panel-default blog-sidebar">
+	    					  <div class="panel-heading">
+	    					    <h3 class="panel-title">Panel title</h3>
+	    					  </div>
+	    					  <div class="panel-body">
+	    					    It is usually not necessary to do this. However, if you are using an agent with keepAlive enabled, then it is best to explicitly shut down the agent when you know that it will no longer be used. Otherwise, sockets may hang open for quite a long time before the server terminates them.
+	    					  </div>
+	    					</div>
+
+	    					<div class="panel panel-primary blog-sidebar">
+	    					  <div class="panel-heading">
+	    					    <h3 class="panel-title">Panel title</h3>
+	    					  </div>
+	    					  <div class="panel-body">
+	    					    Panel content
+	    					  </div>
+	    					</div>
+	    				</div>
+	    			</div>
+	    		</div>
+	    		
 	    	</div>
 	  	</form>
 
@@ -27,9 +102,33 @@
 	</body>
 
 	<script type="text/javascript">
+    	// tinymce.init({
+    	//    selector: '#content'
+    	// });
+
     	tinymce.init({
-    	   selector: '#content'
-    	});
+    	  selector: 'textarea',
+    	  height: 200,
+    	  menubar: false,
+    	  theme: 'modern',
+    	  plugins: [
+    	    'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+    	    'searchreplace wordcount visualblocks visualchars code fullscreen',
+    	    'insertdatetime media nonbreaking save table contextmenu directionality',
+    	    'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
+    	  ],
+    	  toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+    	  toolbar2: 'print preview media | forecolor backcolor emoticons | codesample',
+    	  image_advtab: true,
+    	  templates: [
+    	    { title: 'Test template 1', content: 'Test 1' },
+    	    { title: 'Test template 2', content: 'Test 2' }
+    	  ],
+    	  content_css: [
+    	    '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+    	    '//www.tinymce.com/css/codepen.min.css'
+    	  ]
+    	 });
 
     	$("#saveForm").submit(function(event){
     		

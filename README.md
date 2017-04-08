@@ -1,2 +1,6 @@
 # liberate
-a project about everything topic
+a project about blog system
+
+
+# use supervisor can update in time
+supervisor --harmony index.js

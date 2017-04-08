@@ -1,0 +1,42 @@
+
+
+
+
+
+@media (min-width: 1200px) {
+  .container {
+    width: 970px;
+  }
+}
+
+.blog-main {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-left: 5%;
+  margin-top: 20px;
+}
+
+.blog-select {
+	text-align: center;
+}
+
+
+.blog-reply {
+	margin: 20px 0;
+}
+
+.blog-reply-head {
+	font-weight: bold;
+	font-size: 22px;
+	border-bottom: 1px solid green;
+}
+
+.blog-reply-write {
+	font-weight: bold;
+	font-size: 22px;
+	border-bottom: 1px solid orange;
+}
+
+a.tag {
+	text-decoration: none;
+}
