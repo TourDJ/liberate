@@ -3,11 +3,14 @@
 	<head>
 		<% include ../partials/meta_head %>
 	</head>
+<<<<<<< HEAD
 
 	<body>
 
 		<% include ../partials/blog_title %>
 
+=======
+>>>>>>> 548a60804a2212dc1c64c9b4f2ef0cb7664328d8
 
 		<form method="get" id="blogForm">
 			<div class="container-fluid">
@@ -15,6 +18,7 @@
 				<div class="row">
 					<% include ../partials/head %>
 				</div>
+<<<<<<< HEAD
 
 
 	      		<div class="row">
@@ -116,6 +120,70 @@
 
 
 		<% include ../partials/foot.ejs %>  
+=======
+				<div id="navbar">
+					<ul class="nav navbar-nav">
+				        <li><a href="#">Home</a></li>
+				        <li><a href="#about">About</a></li>
+				        <li><a href="#contact">Contact</a></li>
+				        <li><a href="/login">登录</a></li>
+					</ul>
+	    		</div>
+			</div>
+		</nav>
+
+	  	<% include ../partials/head %>
+
+	    <div class="container">
+
+
+
+			<form method="get" id="blogForm">
+	      		<div>
+	      			<button type="button" class="btn btn-primary" id="w_blog">写博客</button>
+	      		</div>
+	      	</form>
+
+	      	<div>
+	      		<% artis.forEach(function(article){ %>
+	      			<div>
+	      		    	<%=article.title %>
+	      		    </div>
+						<%=article.content %>
+	      		    <div>
+	      		    	
+	      		    </div>
+	      		<% }); %>
+	      	</div>
+
+	      <div class="row">
+
+	        <div class="col-sm-8 blog-main">
+
+	          <nav>
+	            <ul class="pager">
+	              <li><a href="#">Previous</a></li>
+	              <li><a href="#">Next</a></li>
+	            </ul>
+	          </nav>
+
+	        </div><!-- /.blog-main -->
+
+	        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+	          <div class="sidebar-module sidebar-module-inset">
+	            <h4>About</h4>
+	            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+	          </div>
+
+	        </div><!-- /.blog-sidebar -->
+
+	      </div><!-- /.row -->
+
+	    </div><!-- /.container -->
+
+
+	<% include ../partials/foot.ejs %>  
+>>>>>>> 548a60804a2212dc1c64c9b4f2ef0cb7664328d8
 
 	</body>
 
@@ -192,6 +260,14 @@
 			
 		})()
 
+<<<<<<< HEAD
+=======
+		tang.addEvent(btnWblog, 'click', function(){
+			console.log('write blog...')
+			blogForm.action = '/article';
+			blogForm.submit()
+		})
+>>>>>>> 548a60804a2212dc1c64c9b4f2ef0cb7664328d8
     	
 	</script>
 </html>

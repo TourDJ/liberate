@@ -46,6 +46,7 @@ var languageDao = {
 				}
 			)
 		})
+<<<<<<< HEAD
 	},
 
 	getLanguagesById: function (pool, id, callback) {
@@ -93,6 +94,10 @@ var languageDao = {
 				}
 			)
 		})
+=======
+
+		return languages
+>>>>>>> 548a60804a2212dc1c64c9b4f2ef0cb7664328d8
 	}
 }
 

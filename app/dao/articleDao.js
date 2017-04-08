@@ -1,11 +1,29 @@
 var Article 		= require("../model/article").article
 // var dbUtils 		= require("../utils/dbUtils")
+<<<<<<< HEAD
 var tools 		= require("../utils/tools")
 var moment = require('moment')
 var languageDao = require("../dao/languageDao")
 
 var articleDao = {
 
+=======
+//var tools 		= require("../utils/tools")
+
+var articleDao = {
+
+	// var dbDriver = "mysql"
+	// var dbConfig = {
+	// 	host		: 'localhost',
+	// 	user		: 'root',
+	// 	password	: 'tang',
+	// 	port		: '3306',
+	// 	database	: 'liberate'
+	// }
+	// var connection = dbUtils.getConnection(dbDriver, dbConfig)
+	// var pool = dbUtils.getConnPool(dbConfig)
+
+>>>>>>> 548a60804a2212dc1c64c9b4f2ef0cb7664328d8
 	connect: function (connection) {
 		connection.connect(function(err) {
 		  	if (err) {
@@ -25,6 +43,7 @@ var articleDao = {
 		      	console.log('[connection end] succeed!')
 		});
 	},
+<<<<<<< HEAD
 
 	getArticleCount: function (pool, callback) {
 		var _sql = 'SELECT COUNT(1) as num FROM article where state = 1'
@@ -61,6 +80,11 @@ var articleDao = {
 		var _sql = 'SELECT * FROM article where state = 1 '
 				 + ' order by post_time desc '
 				 + ' limit ' + offset + ', ' + rows 
+=======
+
+	getArticles: function (pool, callback) {
+		var _sql = 'SELECT * FROM article;'
+>>>>>>> 548a60804a2212dc1c64c9b4f2ef0cb7664328d8
 		var articles = []
 
 		pool.getConnection(function(err, connection) {
@@ -88,16 +112,23 @@ var articleDao = {
 
 						for (var i = 0; i < len; i++) {
 							temp = results[i]
+<<<<<<< HEAD
 
 							if(temp.post_time == null) {
 								temp.post_time = new Date()
 							}
+=======
+>>>>>>> 548a60804a2212dc1c64c9b4f2ef0cb7664328d8
 							
 							_article = new Article({
 								id: temp.id,
 								title: temp.title,
 								content: temp.content,
+<<<<<<< HEAD
 								post_time: moment(temp.post_time).format('YYYY-MM-DD HH:mm:ss'),
+=======
+								post_time: temp.post_time,
+>>>>>>> 548a60804a2212dc1c64c9b4f2ef0cb7664328d8
 								langid: temp.langid,
 								cnt_approve: temp.cnt_approve,
 								cnt_against: temp.cnt_against,
@@ -116,8 +147,16 @@ var articleDao = {
 		})
 	},
 
+<<<<<<< HEAD
 	getArticleById: function (pool, id, callback) {
 		var _sql = 'SELECT * FROM article where id = ? and state = 1 '
+=======
+		return articles
+	},
+
+	getArticleById: function (pool, id, article, callback) {
+		var _sql = 'SELECT * FROM article where id = ?'
+>>>>>>> 548a60804a2212dc1c64c9b4f2ef0cb7664328d8
 		var _article
 
 		this.updateValue(pool, id, 'cnt_read', function () {
@@ -164,6 +203,12 @@ var articleDao = {
 		})
 	},
 
+<<<<<<< HEAD
+=======
+		return _article
+	},
+
+>>>>>>> 548a60804a2212dc1c64c9b4f2ef0cb7664328d8
 	addArticle: function (pool, article, callback) {
 		var _sql = 'INSERT INTO article SET ?'
 		var post  = article
@@ -182,6 +227,12 @@ var articleDao = {
 		})
 	},
 
+<<<<<<< HEAD
+=======
+		return result
+	},
+
+>>>>>>> 548a60804a2212dc1c64c9b4f2ef0cb7664328d8
 	updateArticle: function (pool, id, article, callback) {
 		// var _sql = 'UPDATE article SET name=?, content=?, mdate=? where id=? '
 		var _sql = 'UPDATE article SET state=1, '
@@ -209,6 +260,7 @@ var articleDao = {
 		})
 	},
 
+<<<<<<< HEAD
 	updateValue: function (pool, id, key, callback) {
 		var _sql = 'UPDATE article SET ' + key + ' = ' + key + ' + 1 '
 				 + ' where state = 1 and id = ' + id
@@ -226,6 +278,11 @@ var articleDao = {
 		 })
 	},
 
+=======
+		return result
+	},
+
+>>>>>>> 548a60804a2212dc1c64c9b4f2ef0cb7664328d8
 	deleteArticle: function (pool, id, article, callback) {
 		var _sql = 'DELETE FROM article WHERE id = ?'
 		var post = [id]

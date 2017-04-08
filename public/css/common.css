@@ -3,6 +3,7 @@ body{
 	background-color: #F5F5F5;
 }
 
+<<<<<<< HEAD
 .blog-header {
   padding-top: 20px;
   padding-bottom: 20px;
@@ -38,3 +39,9 @@ body{
 .blog-footer p:last-child {
   margin-bottom: 0;
 }
+=======
+.block-header{
+	background-color: #E6E6FA;
+	margin-bottom: 10px;
+}
+>>>>>>> 548a60804a2212dc1c64c9b4f2ef0cb7664328d8
