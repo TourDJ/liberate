@@ -16,11 +16,8 @@ exports.slogin = function (req, res, next){
 	var username = req.body.username
 	var password = req.body.password
 
-<<<<<<< HEAD
-	var _user = userDao.getUserByUsername(pool, username, password, function (user) {
-=======
 	userDao.getUserByUsername(pool, username, password, function (user) {
->>>>>>> 548a60804a2212dc1c64c9b4f2ef0cb7664328d8
+
 		console.log(user)
 		if(!user){
 			console.log('登录失败。')
@@ -31,13 +28,11 @@ exports.slogin = function (req, res, next){
 
 			req.session.clock.islogin = true
 			req.session.clock.user = user
-<<<<<<< HEAD
+
 			// console.log(req.session.clock.islogin)
 			// console.log(req.session.clock)
 			res.redirect('/index/' + user.id)
-=======
 			res.redirect('/index')
->>>>>>> 548a60804a2212dc1c64c9b4f2ef0cb7664328d8
 		}
 	})
 }

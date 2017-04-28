@@ -7,7 +7,6 @@ var pool = dbUtils.getConnPool()
 
 exports.writeArticle = function (req, res, next) {
 	var _lang = []
-<<<<<<< HEAD
 	var islogin
 	
 	if(req.session.clock.user)
@@ -26,15 +25,6 @@ exports.writeArticle = function (req, res, next) {
 			"islogin": islogin,
 			"langs": languages,
 			"nums": 0
-=======
-
-	languageDao.getLanguages(pool, function (languages) {
-		/* body... */
-		res.render('pages/blog_write', {
-			"title": "写博客", 
-			"css": "./css/blog.css",
-			"langs": languages
->>>>>>> 548a60804a2212dc1c64c9b4f2ef0cb7664328d8
 		})
 	})
 }
@@ -56,10 +46,7 @@ exports.saveArticle = function (req, res, next) {
 		title: params.title,
 		content: params.content,
 		langid: tags,
-<<<<<<< HEAD
 		post_time: new Date(),
-=======
->>>>>>> 548a60804a2212dc1c64c9b4f2ef0cb7664328d8
 		state: 1
 	})
 
@@ -70,7 +57,6 @@ exports.saveArticle = function (req, res, next) {
 			res.location('/article')
 		}
 	})
-<<<<<<< HEAD
 }
 
 exports.getArticleById = function (req, res, next) {
@@ -112,6 +98,5 @@ exports.getArticleById = function (req, res, next) {
 
 exports.saveComment = function (req, res, next) {
 	
-=======
->>>>>>> 548a60804a2212dc1c64c9b4f2ef0cb7664328d8
+
 }

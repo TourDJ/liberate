@@ -1,8 +1,8 @@
 var dbUtils = require("../utils/dbUtils")
-<<<<<<< HEAD
 var moment = require('moment')
 var articleDao = require("../dao/articleDao")
 var blogDao = require("../dao/blogDao")
+var tools = require("../utils/tools")
 
 //
 var index = function (req, res, next) {
@@ -44,9 +44,9 @@ var index = function (req, res, next) {
 					"nums": num
 				})
 			})
-=======
-var tools = require("../utils/tools")
-var articleDao = require("../dao/articleDao")
+		})
+	})
+}
 
 exports.index = function (req, res, next) {
 	var _articles = []
@@ -66,7 +66,6 @@ exports.index = function (req, res, next) {
 			"description": "a personal blog website",
 			"author": "ivan",
 			"artis": _articles
->>>>>>> 548a60804a2212dc1c64c9b4f2ef0cb7664328d8
 		})
 	})
 }
