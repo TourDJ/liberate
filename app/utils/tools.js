@@ -68,5 +68,9 @@ var tools = {
 	
 }
 
+// database type
+//	1: mongodb	2: mysql
+tools.dbType = 1
+
 
 module.exports = tools

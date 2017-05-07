@@ -1,4 +1,4 @@
-var Blog = require("../model/blog").blog
+var Blog = require("../bean/blog").blog
 
 var blogDao = {
 

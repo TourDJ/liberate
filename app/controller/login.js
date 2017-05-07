@@ -1,5 +1,5 @@
 var dbUtils = require("../utils/dbUtils")
-var User = require("../model/user").user
+var User = require("../bean/user").user
 var userDao = require("../dao/userDao")
 
 var pool = dbUtils.getConnPool()

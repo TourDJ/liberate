@@ -1,9 +1,51 @@
-var dbUtils = require("../utils/dbUtils")
-var moment = require('moment')
-var articleDao = require("../dao/articleDao")
-var blogDao = require("../dao/blogDao")
-var tools = require("../utils/tools")
+var moment 		= require('moment')
+var tools 		= require("../utils/tools")
+const type = tools.dbType;
 
++function (type) {
+	switch (type) {
+		case 1:
+			var Blog = require('../model/blog')
+			var index = function (req, res, next) {
+				var blog
+				var pages
+				var offset
+				var islogin
+				var pageSize = 2
+				var _articles = []
+				var aid = req.params.aid
+				var pageNo = aid || 1
+
+				Blog.fetch(function(err, _blog) {
+					if(err)
+						console.log(err)
+					
+					// res.render('list', {
+					// 	title: '列表页',
+						blog = _blog
+					// })
+				})
+
+				res.render('pages/index', {
+					"title": "博客首页", 
+					"css": "/css/index.css",
+					"blog_title": '1',
+					"index": '1',
+					"blog_desc": ''
+					"islogin": '1',
+					"artis": '',
+					"blog": '',
+					"pages": '1',
+					"pageNo": '1',
+					"nums": 0
+				})
+			}
+			break;
+
+		case 2:
+var dbUtils 	= require("../utils/dbUtils")
+var articleDao 	= require("../dao/articleDao")
+var blogDao 	= require("../dao/blogDao")
 //
 var index = function (req, res, next) {
 	var _blog
@@ -82,3 +124,11 @@ var index2 = function (req, res, next) {
 
 exports.index = index
 exports.index2 = index2
+			
+			break;
+
+		default:
+			
+			break;
+	}
+}(type)

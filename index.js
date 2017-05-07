@@ -1,12 +1,13 @@
 var server = require('./app/service/server')
-// var router = require('./app/service/routers')
-var tools = require('./app/utils/tools').tools
+// var tools = require('./app/utils/tools').tools
 const path = require('path')
 var express = require('express')
 var app = express()
 var bodyParser = require('body-parser')
 var cookieParser = require('cookie-parser');
 var session = require('express-session')
+var mongoStroe = require('connect-mongo')(session)	//
+var mongoose = require('./app/utils/mongodb.js')				// use mongodb
 
 //initial args
 server.init(app, {
@@ -18,44 +19,6 @@ server.init(app, {
 app.use(express.static(path.join(__dirname, 'bower_components')))
 app.use(express.static('public'))
 
-// =========================================================================
-// //use Set object save loaded request path
-// router.paths = new Set()
-
-// //pre load handler
-// app.use(function(req, res, next) {
-
-// 	var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl
-// 	// console.log('fullUrl:' + fullUrl)
-// 	// console.log('originalUrl:' + req.originalUrl)
-
-// 	var urlPath = tools.getReqPath(req.originalUrl, '/', 1)
-// 	// console.log('urlPath:' + urlPath)
-// 	if( !router.paths.has( urlPath ) ){
-// 		if( router.routers(urlPath, null, app) ) {
-// 			router.paths.add( urlPath )
-// 		}
-// 	}
-
-// 	next()
-		
-// })
-
-// app.use(function(err, req, res, next) {
-// 	console.error(err.stack)
-// 	res.status(500).send('Something broke!')
-// })
-// app.use(errorHandler)
-// function errorHandler(err, req, res, next) {
-// 	console.log(res.statusCode)
-// 	if (res.headersSent) {
-// 		return next(err)
-// 	}
-// 	res.status(404)
-// 	res.render('pages/error', { "error": err.stack })
-// }
-// =========================================================================
-
 
 //Since sessions use cookies to keep track users we need both the cookie parser and 
 //the session framework. It is important to note that the cookie parser is used before 
@@ -65,21 +28,9 @@ app.use(cookieParser());
 //Create a session middleware with the given options
 app.use(session({
 	secret: 'jf blog',
-	resave: true,
-	saveUninitialized: true,
-	cookie: { maxAge: 600000, secure: true }
-}))
-
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
-
-
-//Create a session middleware with the given options
-app.use(session({
-	secret: 'jf blog',
 	resave: false,
 	saveUninitialized: true,
-	cookie: { secure: true }
+	cookie: { maxAge: 600000, secure: true }
 }))
 
 // parse application/x-www-form-urlencoded

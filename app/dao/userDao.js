@@ -1,4 +1,4 @@
-var User = require("../model/user").user
+var User = require("../bean/user").user
 var tools = require("../utils/tools")
 
 
@@ -47,11 +47,9 @@ var userDao = {
 				}
 			)
 		})
-<<<<<<< HEAD
-=======
+
 
 		return _user
->>>>>>> 548a60804a2212dc1c64c9b4f2ef0cb7664328d8
 	},
 
 	addUser: function (pool, user, callback) {
@@ -75,11 +73,8 @@ var userDao = {
 			 	callback(result)
 			});
 		})
-<<<<<<< HEAD
-=======
 
 		return result
->>>>>>> 548a60804a2212dc1c64c9b4f2ef0cb7664328d8
 	}
 }
 

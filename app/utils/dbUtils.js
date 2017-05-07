@@ -1,10 +1,7 @@
 var	mysql = require('mysql')
 
 var defaultConfig = {
-<<<<<<< HEAD
 	connectionLimit : 10,
-=======
->>>>>>> 548a60804a2212dc1c64c9b4f2ef0cb7664328d8
 	host		: 'localhost',
 	user		: 'root',
 	password	: 'tang',

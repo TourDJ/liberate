@@ -12,24 +12,24 @@ module.exports = function(app) {
 
 
 	//
-	app.get('/article', article.writeArticle)
-	app.post('/article/save', article.saveArticle)
-	app.get('/article/:articleId', article.getArticleById)
-	app.post('/article/saveComment', article.saveComment)
+	// app.get('/article', article.writeArticle)
+	// app.post('/article/save', article.saveArticle)
+	// app.get('/article/:articleId', article.getArticleById)
+	// app.post('/article/saveComment', article.saveComment)
 
-	app.get('/login', login.login)
-	app.post('/slogin', login.slogin)
-	app.get('/register', login.register)
-	app.post('/sregister', login.segister)
+	// app.get('/login', login.login)
+	// app.post('/slogin', login.slogin)
+	// app.get('/register', login.register)
+	// app.post('/sregister', login.segister)
 
-	//
-	app.get('/article', article.writeArticle)
-	app.post('/article/save', article.saveArticle)
+	// //
+	// app.get('/article', article.writeArticle)
+	// app.post('/article/save', article.saveArticle)
 
-	app.get('/login', login.login)
-	app.post('/slogin', login.slogin)
-	app.get('/register', login.register)
-	app.post('/sregister', login.segister)
+	// app.get('/login', login.login)
+	// app.post('/slogin', login.slogin)
+	// app.get('/register', login.register)
+	// app.post('/sregister', login.segister)
 
 }
 
